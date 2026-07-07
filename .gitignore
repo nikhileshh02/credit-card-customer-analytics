@@ -1,0 +1,20 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Environment
+.env
+venv/
+env/
+
+# Power BI temp/cache files
+*.pbix.lock
+~$*.pbix
+
+# Large/exported files (uncomment if you don't want to push these)
+# *.csv
