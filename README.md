@@ -18,27 +18,16 @@ This project answers those questions through 50 targeted SQL business queries an
 
 ---
 
-## 🗂️ Project Structure
+## 🗂️ Repository Contents
 
-```
-credit-card-customer-analytics/
-│
-├── README.md
-├── requirements.txt
-│
-├── data/
-│   ├── final_credit_card.csv
-│   └── final_customers.csv
-│
-├── notebooks/
-│   └── data_preparation.ipynb        # Raw data cleaning & merging (pandas)
-│
-├── sql/
-│   └── credit_card_analysis.sql      # Schema + load + 50 KPI queries
-│
-└── powerbi/
-    └── credit_card_financial_analysis.pbix
-```
+| File | Description |
+|---|---|
+| [`credit_card_analysis.sql`](credit_card_analysis.sql) | Schema creation, data load, and 50 business KPI queries |
+| [`credit_card_financial_analysis.pbix`](credit_card_financial_analysis.pbix) | Power BI dashboard (3 pages, DAX measures, WoW tracking) |
+| [`data_preparation.ipynb`](data_preparation.ipynb) | Python/Pandas notebook — raw data cleaning & merging |
+| [`final_credit_card.csv`](final_credit_card.csv) | Cleaned, merged credit card transaction dataset |
+| [`final_customers.csv`](final_customers.csv) | Cleaned, merged customer demographic dataset |
+| [`requirements.txt`](requirements.txt) | Python dependencies |
 
 ---
 
@@ -56,9 +45,9 @@ credit-card-customer-analytics/
 ## 🔄 Data Pipeline
 
 1. **Raw data** — Four source files (`cc_add.csv`, `credit_card.csv`, `cust_add.csv`, `customer.csv`) containing card-level and customer-level records
-2. **Cleaning (Python/Pandas)** — Null checks, date type conversion, column renaming for consistency, concatenation into two unified tables
+2. **Cleaning (Python/Pandas)** — Null checks, date type conversion, column renaming for consistency, concatenation into two unified tables (see `data_preparation.ipynb`)
 3. **Output** — `final_credit_card.csv` and `final_customers.csv`
-4. **Load to MySQL** — Schema created with proper data types (see `sql/credit_card_analysis.sql`), data loaded via `LOAD DATA INFILE` with inline whitespace cleaning
+4. **Load to MySQL** — Schema created with proper data types (see `credit_card_analysis.sql`), data loaded via `LOAD DATA INFILE` with inline whitespace cleaning
 5. **SQL Analysis** — 50 business KPI queries across 5 categories (Revenue, Engagement, Risk, Segmentation, Spending Behavior)
 6. **Power BI Dashboard** — 3-page report with calculated columns (Age Group, Income Group), explicit DAX measures, and Week-over-Week trend tracking
 
@@ -74,7 +63,7 @@ credit-card-customer-analytics/
 | 👥 Segmentation & Profiling (Q31–40) | Age/income/education distributions, homeowner vs. non-homeowner spend |
 | 🛍️ Spending Behavior (Q41–50) | Expense type breakdown, chip adoption rate, 4-week moving average |
 
-Full queries in [`sql/credit_card_analysis.sql`](sql/credit_card_analysis.sql).
+Full queries in [`credit_card_analysis.sql`](credit_card_analysis.sql).
 
 ---
 
@@ -96,7 +85,7 @@ Full queries in [`sql/credit_card_analysis.sql`](sql/credit_card_analysis.sql).
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/<your-username>/credit-card-customer-analytics.git
+git clone https://github.com/nikhileshh02/credit-card-customer-analytics.git
 cd credit-card-customer-analytics
 ```
 
@@ -105,16 +94,16 @@ cd credit-card-customer-analytics
 pip install -r requirements.txt
 ```
 
-### 3. Run data preparation notebook
-Open `notebooks/data_preparation.ipynb` and run all cells to regenerate `final_credit_card.csv` and `final_customers.csv` (update file paths inside the notebook to match your local setup).
+### 3. Run the data preparation notebook
+Open `data_preparation.ipynb` and run all cells to regenerate `final_credit_card.csv` and `final_customers.csv` (update file paths inside the notebook to match your local setup).
 
 ### 4. Load data into MySQL
-- Open `sql/credit_card_analysis.sql` in MySQL Workbench
-- **Update the `LOAD DATA LOCAL INFILE` file paths** to point to your local `data/` folder
+- Open `credit_card_analysis.sql` in MySQL Workbench
+- **Update the `LOAD DATA LOCAL INFILE` file paths** to point to where you saved the CSVs locally
 - Run the script to create the schema, load data, and explore the 50 KPI queries
 
 ### 5. Open the Power BI dashboard
-- Open `powerbi/credit_card_financial_analysis.pbix` in Power BI Desktop
+- Open `credit_card_financial_analysis.pbix` in Power BI Desktop
 - Update the MySQL connection string (Home → Transform Data → Data Source Settings) to point to your local MySQL instance
 - Refresh
 
